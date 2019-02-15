@@ -1,0 +1,32 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+    id 'org.joinfaces' version '4.0.2'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply from: "$rootDir/gradle/versioning.gradle"
+
+group = 'ch.so.agi.gdi'
+description = """search service"""
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "http://repository.primefaces.org" }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'	
+    implementation 'org.joinfaces:jsf-spring-boot-starter'
+    implementation 'org.joinfaces:primefaces-spring-boot-starter'
+    implementation 'javax.enterprise:cdi-api:2.0.SP1'
+    runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

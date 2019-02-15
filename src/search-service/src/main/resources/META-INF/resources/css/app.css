@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.container {
+    height: 100%;
+    background: #FFFFFF;
+}
+
+.box,
+.sample-layout > div {
+    background-color: #FFFFFF;
+    text-align: left;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 4px;
+}
+
+.box-stretched {
+    height: 100%;
+}
+
+.sample-layout {
+    margin: 0;
+}
+
+.sample-layout > div {
+    border: 1px solid #ffffff;
+}
+
+.vertical-container {
+    margin: 0;
+    height: 200px;
+    background: #efefef;
+    border-radius: 4px;
+}
+
+.nested-grid .p-col-4 {
+    padding-bottom: 1em;
+}

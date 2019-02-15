@@ -8,9 +8,13 @@
 
 
 # SET GRETL environment variables
+#export DB_URI_SOGIS='jdbc:postgresql://geodb.verw.rootso.org/sogis?ApplicationName=gretl&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
+#export DB_URI_PUB='jdbc:postgresql://geodb_brw.verw.rootso.org/pub?ApplicationName=gretl&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
+#export DB_URI_EDIT='jdbc:postgresql://10.36.43.208:5432/postgres'
+
 export DB_URI_SOGIS='jdbc:postgresql://geodb.verw.rootso.org/sogis?ApplicationName=gretl&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
-export DB_URI_PUB='jdbc:postgresql://geodb_brw.verw.rootso.org/pub?ApplicationName=gretl&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
-export DB_URI_EDIT='jdbc:postgresql://10.36.43.208:5432/postgres'
+export DB_URI_PUB='jdbc:postgresql://192.168.50.8:5432/pub?ApplicationName=gretl'
+export DB_URI_EDIT='jdbc:postgresql://192.168.50.8:5432/pub'
 
 echo "======================================================="
 echo "DB CREDENTIALS"

@@ -24,3 +24,19 @@ Anforderungen:
   * Unnötigen Treffer werden nicht angezeigt
 * Eine Suche mit drei Tokens darf nicht länger als 0.5 Sekunden dauern, bis die Resultate angezeigt werden.
 
+
+## Fehlende Anbindung an GDI
+Falls zum Ausprobieren die GDI-Datenbanken nicht zur Verfügung stehen, kann die z.B. die Pub-DB einfach in eine Vagrant-Box importiert werden. Die Datenbank wird in diesem Fall auch gleich für die neue "Gott"-Suchtabelle verwendet. (Kann bisschen fricklig sein mit den Dumps, falls unterschiedliche DB-Versionen.)
+
+```
+vagrant ssh
+sudo su postgres
+psql -d postgres -f globals_geodb.rootso.org.dmp
+pg_restore --role=postgres --exit-on-error -d pub pub_geodb.rootso.org.dmp
+```
+
+`build.gradle` angepasst, damit es ohne Docker-Gretl-Image funktioniert.
+
+```
+gradle createTable loadData setupSearchFunc
+```

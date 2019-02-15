@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>search service 3.0</title>
+    <h:outputStylesheet name="css/primeflex.css" /> 
+    <h:outputStylesheet name="css/app.css" /> 
+	<style type="text/css">
+	    .ui-datalist .ui-datalist-content {
+	        border:0 none
+	    }
+	     
+	    .ui-datalist ul {
+	        padding: 0px 10px 0 20px;
+	        margin: 5px 0;
+	    }
+	     
+	    .value {
+	        font-weight: bold;
+	    }
+	     
+	    .ui-autocomplete-itemtip {
+	        -moz-box-sizing: content-box;
+	        -webkit-box-sizing: content-box;
+	        box-sizing: content-box;
+	    }
+	</style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <div class="p-grid p-align-center">
+            <div class="p-col">
+                <div class="box"></div>
+            </div>
+            <div class="p-col">
+                <div class="box">
+
+					<h:form>
+					    <p:growl id="msgs" showDetail="true" />
+					     
+					    <h:panelGrid columns="2" cellpadding="5">
+					        <p:outputLabel value="Suche 3.0:" for="acSimple" />
+					        <p:autoComplete id="acSimple" size="30" maxResults="20" placeholder="Search places or add maps..." minQueryLength="3" value="#{searchView.txt1}" completeMethod="#{searchView.completeText}" />
+					 
+					    </h:panelGrid>
+					     
+					</h:form>
+
+                </div>
+            </div>
+            <div class="p-col">
+                <div class="box"></div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>
