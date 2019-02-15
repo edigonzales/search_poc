@@ -14,7 +14,7 @@ BEGIN
 	    SELECT
 			displaytext || ''                            |||'' AS displaytext_v, 
 			class AS class_v,
-			id_in_class AS id_in_class_v,
+			id_in_class::int AS id_in_class_v,
 			tok1 || '' | '' || tok2  || '' | '' || tok3 AS query_tokens_v,
 			CAST (
 				100 *  COALESCE(word_similarity(tok1, searchtext_1) + word_similarity(tok2, searchtext_1) + word_similarity(tok3, searchtext_1), 0) + 
@@ -45,10 +45,16 @@ BEGIN
 							searchtext_3 LIKE ''%'' || tok3 || ''%''
 		)
 		ORDER BY 
-				100 *  COALESCE(word_similarity(tok1, searchtext_1) + word_similarity(tok2, searchtext_1) + word_similarity(tok3, searchtext_1), 0) + 
-				10 * COALESCE(word_similarity(tok1, searchtext_2) + word_similarity(tok2, searchtext_2) + word_similarity(tok3, searchtext_2), 0) +
-				1 * COALESCE(word_similarity(tok1, searchtext_3) + word_similarity(tok2, searchtext_3) + word_similarity(tok3, searchtext_3), 0)
-					DESC
+				(
+					100 *  COALESCE(word_similarity(tok1, searchtext_1) + word_similarity(tok2, searchtext_1) + word_similarity(tok3, searchtext_1), 0) + 
+				  10 * COALESCE(word_similarity(tok1, searchtext_2) + word_similarity(tok2, searchtext_2) + word_similarity(tok3, searchtext_2), 0) +
+				  1 * COALESCE(word_similarity(tok1, searchtext_3) + word_similarity(tok2, searchtext_3) + word_similarity(tok3, searchtext_3), 0)
+				) DESC--,
+				--city ASC,
+				--streetname ASC,
+				--streetnumber_prefix ASC,
+				--streetnumber_appendix ASC
+
 		LIMIT 51
 	;
 END;

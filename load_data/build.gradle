@@ -27,18 +27,18 @@ def dbUriDocker = 'jdbc:postgresql://192.168.50.8:5432/pub';
 def dbUserDocker = 'ddluser';
 def dbPwdDocker = 'ddluser'; 
 
-task createTable(type: SqlExecutor){
+task createTable(type: SqlExecutor) {
 	database = [dbUriDocker, dbUserDocker, dbPwdDocker]
     sqlFiles = ['sql_ddl/drop_table.sql', 'sql_ddl/create_table.sql']
 }
 
-task loadData(type: Db2Db, dependsOn: createTable){
+task loadData(type: Db2Db) {
     sourceDb = [dbUriPub, dbUserPub, dbPwdPub]
     targetDb = [dbUriDocker, dbUserDocker, dbPwdDocker]
     transferSets = [
-		new TransferSet('sql_dml/fill_objects.sql', 'public.searchobjects', false),
-		new TransferSet('sql_dml/grundstuecke.sql', 'public.searchobjects', false),
-		new TransferSet('sql_dml/adressen.sql', 'public.searchobjects', false),
+		new TransferSet('sql_dml/fill_objects.sql', 'public.searchobjects', true),
+		new TransferSet('sql_dml/grundstuecke.sql', 'public.searchobjects', true),
+		new TransferSet('sql_dml/adressen.sql', 'public.searchobjects', true),
 	];        
 }
 
@@ -52,8 +52,8 @@ task loadMeta(type: Db2Db, dependsOn: loadData){
 }
 */
 
-task setupSearchFunc(type: SqlExecutor, dependsOn: loadData) {
-//task setupSearchFunc(type: SqlExecutor) {
+//task setupSearchFunc(type: SqlExecutor, dependsOn: loadData) {
+task setupSearchFunc(type: SqlExecutor) {
 	database = [dbUriDocker, dbUserDocker, dbPwdDocker]
     sqlFiles = ['sql_ddl/create_pg_trgm.sql', 'sql_ddl/create_func_tok3.sql']   //, 'sql_ddl/create_func_tok3.sql'] - SqlExecutor returns error --> exec manual 
 }
